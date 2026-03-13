@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MindAltitude – Aviation Mental Training</title>
+  <title>MindAltitude</title>
   <meta
     name="description"
-    content="MindAltitude is an aviation mental training app for pilots and student pilots. Practice mental math, quick conversions, VFR and IFR exercises in a modern cockpit-inspired interface."
+    content="MindAltitude is a bilingual aviation mental training app for pilots and student pilots."
   />
   <style>
     :root {
@@ -20,7 +20,7 @@
       --accent-2: #8fd1ff;
       --highlight: #1f7bd8;
       --shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
-      --radius: 20px;
+      --radius: 22px;
       --max-width: 1180px;
     }
 
@@ -35,6 +35,880 @@
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(93, 176, 255, 0.16), transparent 30%),
+        radial-gradient(circle at top left, rgba(143, 209, 255, 0.10), transparent 22%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(var(--max-width), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(14px);
+      background: rgba(7, 17, 31, 0.74);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--accent), var(--highlight));
+      box-shadow: var(--shadow);
+      font-size: 21px;
+    }
+
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      color: var(--muted);
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
+    }
+
+    .nav a:hover {
+      color: var(--text);
+    }
+
+    .lang-switch {
+      display: inline-flex;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .lang-switch button {
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      padding: 9px 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .lang-switch button.active {
+      background: linear-gradient(135deg, var(--accent), var(--highlight));
+      color: white;
+    }
+
+    .hero {
+      padding: 76px 0 58px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(93, 176, 255, 0.12);
+      color: var(--accent-2);
+      font-size: 0.86rem;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      margin-bottom: 18px;
+      border: 1px solid rgba(93, 176, 255, 0.22);
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      font-size: clamp(2.5rem, 4.5vw, 4.6rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    .hero p.lead {
+      margin: 0 0 28px;
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 680px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 26px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 22px;
+      border-radius: 14px;
+      font-weight: 700;
+      transition: transform 0.2s ease, background 0.2s ease, opacity 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .button-primary {
+      background: linear-gradient(135deg, var(--accent), var(--highlight));
+      color: white;
+      box-shadow: var(--shadow);
+    }
+
+    .button-secondary {
+      background: rgba(255,255,255,0.04);
+      border-color: rgba(255,255,255,0.12);
+      color: var(--text);
+    }
+
+    .hero-points {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 18px;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .hero-points span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .phone-card {
+      position: relative;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 32px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      max-width: 395px;
+      margin-left: auto;
+    }
+
+    .phone-screen {
+      border-radius: 24px;
+      overflow: hidden;
+      background: linear-gradient(180deg, #10233b 0%, #081321 100%);
+      min-height: 700px;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .mock-status {
+      display: flex;
+      justify-content: space-between;
+      color: #dce8f6;
+      font-size: 0.82rem;
+      opacity: 0.85;
+      margin-bottom: 18px;
+    }
+
+    .mock-title {
+      text-align: center;
+      margin: 10px 0 24px;
+    }
+
+    .mock-title .small {
+      color: var(--accent-2);
+      font-size: 0.88rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .mock-title h2 {
+      margin: 8px 0 0;
+      font-size: 1.8rem;
+      line-height: 1.1;
+    }
+
+    .mock-panels {
+      display: grid;
+      gap: 14px;
+    }
+
+    .mock-panel {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .mock-panel strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .mock-panel span {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .mock-footer {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .mock-chip {
+      background: rgba(93,176,255,0.10);
+      border: 1px solid rgba(93,176,255,0.16);
+      color: var(--accent-2);
+      padding: 12px 14px;
+      border-radius: 16px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.92rem;
+    }
+
+    section {
+      padding: 36px 0;
+    }
+
+    .section-title {
+      max-width: 780px;
+      margin-bottom: 24px;
+    }
+
+    .section-title h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 3vw, 2.7rem);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+    }
+
+    .section-title p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 16px;
+      font-size: 1.2rem;
+      background: rgba(93,176,255,0.12);
+      border: 1px solid rgba(93,176,255,0.18);
+      color: var(--accent-2);
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 1.15rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.97rem;
+    }
+
+    .feature-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .feature {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .feature h3 {
+      margin: 0 0 10px;
+      font-size: 1.12rem;
+    }
+
+    .feature p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .screenshots {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .shot {
+      aspect-ratio: 9 / 19;
+      border-radius: 26px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)),
+        linear-gradient(180deg, #10233b, #081321);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      text-align: center;
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .cta {
+      margin-top: 18px;
+      background:
+        linear-gradient(135deg, rgba(93,176,255,0.16), rgba(31,123,216,0.16)),
+        rgba(255,255,255,0.04);
+      border: 1px solid rgba(93,176,255,0.18);
+      border-radius: 28px;
+      padding: 34px;
+      box-shadow: var(--shadow);
+    }
+
+    .cta h2 {
+      margin: 0 0 12px;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      line-height: 1.15;
+    }
+
+    .cta p {
+      margin: 0 0 22px;
+      color: var(--muted);
+      max-width: 760px;
+    }
+
+    footer {
+      padding: 34px 0 50px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 22px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a:hover {
+      color: var(--text);
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .grid-3,
+      .screenshots,
+      .feature-list {
+        grid-template-columns: 1fr;
+      }
+
+      .phone-card {
+        margin: 0 auto;
+        max-width: 420px;
+      }
+
+      .hero {
+        padding-top: 46px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .topbar-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-wrap {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .phone-screen {
+        min-height: 620px;
+      }
+
+      .cta,
+      .card,
+      .feature {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 2.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a href="#" class="brand">
+        <span class="brand-logo">🧠</span>
+        <span>MindAltitude</span>
+      </a>
+
+      <div class="nav-wrap">
+        <nav class="nav">
+          <a href="#about" data-i18n="nav_about">About</a>
+          <a href="#features" data-i18n="nav_features">Features</a>
+          <a href="#screenshots" data-i18n="nav_screenshots">Screenshots</a>
+          <a href="#download" data-i18n="nav_download">Download</a>
+          <a href="#contact" data-i18n="nav_contact">Contact</a>
+        </nav>
+
+        <div class="lang-switch" aria-label="Language switch">
+          <button id="lang-en" class="active" type="button">EN</button>
+          <button id="lang-fr" type="button">FR</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow" data-i18n="eyebrow">Aviation Mental Training App</span>
+
+          <h1 data-i18n="hero_title">Train faster. Think sharper. Fly smarter.</h1>
+
+          <p class="lead" data-i18n="hero_text">
+            MindAltitude helps pilots and student pilots build the mental reflexes
+            that matter in aviation: quick calculations, useful conversions,
+            VFR and IFR practice, and structured training in a clean,
+            cockpit-inspired interface.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="#download" data-i18n="hero_cta_primary">
+              Coming Soon on the App Store
+            </a>
+            <a class="button button-secondary" href="#features" data-i18n="hero_cta_secondary">
+              Explore Features
+            </a>
+          </div>
+
+          <div class="hero-points">
+            <span data-i18n="hero_point_1">✈️ Built for pilots and students</span>
+            <span data-i18n="hero_point_2">🧮 Fast aviation mental math</span>
+            <span data-i18n="hero_point_3">📱 Clean iPhone and iPad experience</span>
+          </div>
+        </div>
+
+        <div class="phone-card">
+          <div class="phone-screen">
+            <div>
+              <div class="mock-status">
+                <span>9:41</span>
+                <span>MindAltitude</span>
+              </div>
+
+              <div class="mock-title">
+                <div class="small" data-i18n="mock_small">Training Modules</div>
+                <h2 data-i18n="mock_title">Practical Aviation Mental Training</h2>
+              </div>
+
+              <div class="mock-panels">
+                <div class="mock-panel">
+                  <strong data-i18n="mock_panel_1_title">VFR Training</strong>
+                  <span data-i18n="mock_panel_1_text">Wind, heading, drift, timing, navigation logic.</span>
+                </div>
+
+                <div class="mock-panel">
+                  <strong data-i18n="mock_panel_2_title">IFR Practice</strong>
+                  <span data-i18n="mock_panel_2_text">Structured mental drills for instrument flying.</span>
+                </div>
+
+                <div class="mock-panel">
+                  <strong data-i18n="mock_panel_3_title">Quick Conversions</strong>
+                  <span data-i18n="mock_panel_3_text">NM, km, ft, m, kt, kg, lb and more.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mock-footer">
+              <div class="mock-chip" data-i18n="mock_chip_1">Pilot-focused</div>
+              <div class="mock-chip" data-i18n="mock_chip_2">Fast training</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-title">
+          <h2 data-i18n="about_title">Why MindAltitude?</h2>
+          <p data-i18n="about_text">
+            Aviation often depends on speed, clarity, and mental accuracy.
+            MindAltitude is designed to make training more practical, more engaging,
+            and more aligned with the real mental demands of flying.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <div class="card-icon">🛫</div>
+            <h3 data-i18n="about_card_1_title">Designed for aviation use</h3>
+            <p data-i18n="about_card_1_text">
+              Training content built around real pilot needs, from student practice
+              to operational mental agility.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">⚙️</div>
+            <h3 data-i18n="about_card_2_title">Clear and efficient</h3>
+            <p data-i18n="about_card_2_text">
+              A focused interface inspired by modern cockpit logic, built to reduce
+              distraction and support fast learning.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">📈</div>
+            <h3 data-i18n="about_card_3_title">Practice with purpose</h3>
+            <p data-i18n="about_card_3_text">
+              Improve speed, confidence, and mental fluency with short, targeted
+              exercises you can repeat regularly.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="container">
+        <div class="section-title">
+          <h2 data-i18n="features_title">Core features</h2>
+          <p data-i18n="features_text">
+            A modular training experience for pilots who want sharper mental tools,
+            quicker reactions, and better day-to-day calculation habits.
+          </p>
+        </div>
+
+        <div class="feature-list">
+          <article class="feature">
+            <h3 data-i18n="feature_1_title">VFR mental training</h3>
+            <p data-i18n="feature_1_text">
+              Practice the calculations and reasoning commonly used in visual flying:
+              heading, wind correction, drift awareness, timing, and practical navigation logic.
+            </p>
+          </article>
+
+          <article class="feature">
+            <h3 data-i18n="feature_2_title">IFR-oriented exercises</h3>
+            <p data-i18n="feature_2_text">
+              Reinforce the mental discipline needed for instrument flying with
+              structured exercises built around precision and fast decision-making.
+            </p>
+          </article>
+
+          <article class="feature">
+            <h3 data-i18n="feature_3_title">Quick aviation conversions</h3>
+            <p data-i18n="feature_3_text">
+              Train the conversions pilots use all the time: nautical miles,
+              kilometers, feet, meters, knots, kilograms, pounds, and more.
+            </p>
+          </article>
+
+          <article class="feature">
+            <h3 data-i18n="feature_4_title">Fast and practical format</h3>
+            <p data-i18n="feature_4_text">
+              Short, efficient sessions designed to fit into daily training,
+              briefing preparation, or recurrent practice.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="screenshots">
+      <div class="container">
+        <div class="section-title">
+          <h2 data-i18n="screenshots_title">Screenshots</h2>
+          <p data-i18n="screenshots_text">
+            Replace these placeholders with your real iPhone or iPad screenshots once ready.
+          </p>
+        </div>
+
+        <div class="screenshots">
+          <div class="shot" data-i18n="shot_1">Add screenshot 1 here</div>
+          <div class="shot" data-i18n="shot_2">Add screenshot 2 here</div>
+          <div class="shot" data-i18n="shot_3">Add screenshot 3 here</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="download">
+      <div class="container">
+        <div class="cta">
+          <h2 data-i18n="download_title">Coming soon on the App Store</h2>
+          <p data-i18n="download_text">
+            MindAltitude is being prepared for release. Stay tuned for the first version
+            and discover a new way to train aviation mental skills on iPhone and iPad.
+          </p>
+          <a class="button button-primary" href="#" data-i18n="download_button">App Store link coming soon</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-title">
+          <h2 data-i18n="contact_title">Contact</h2>
+          <p data-i18n="contact_text">
+            Add your email address here when you are ready, for example:
+            <strong>contact@mindaltitude.com</strong>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div data-i18n="footer_copy">© 2026 MindAltitude. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="#" data-i18n="footer_privacy">Privacy Policy</a>
+        <a href="#" data-i18n="footer_terms">Terms</a>
+        <a href="#contact" data-i18n="footer_contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const translations = {
+      en: {
+        nav_about: "About",
+        nav_features: "Features",
+        nav_screenshots: "Screenshots",
+        nav_download: "Download",
+        nav_contact: "Contact",
+
+        eyebrow: "Aviation Mental Training App",
+        hero_title: "Train faster. Think sharper. Fly smarter.",
+        hero_text: "MindAltitude helps pilots and student pilots build the mental reflexes that matter in aviation: quick calculations, useful conversions, VFR and IFR practice, and structured training in a clean, cockpit-inspired interface.",
+        hero_cta_primary: "Coming Soon on the App Store",
+        hero_cta_secondary: "Explore Features",
+        hero_point_1: "✈️ Built for pilots and students",
+        hero_point_2: "🧮 Fast aviation mental math",
+        hero_point_3: "📱 Clean iPhone and iPad experience",
+
+        mock_small: "Training Modules",
+        mock_title: "Practical Aviation Mental Training",
+        mock_panel_1_title: "VFR Training",
+        mock_panel_1_text: "Wind, heading, drift, timing, navigation logic.",
+        mock_panel_2_title: "IFR Practice",
+        mock_panel_2_text: "Structured mental drills for instrument flying.",
+        mock_panel_3_title: "Quick Conversions",
+        mock_panel_3_text: "NM, km, ft, m, kt, kg, lb and more.",
+        mock_chip_1: "Pilot-focused",
+        mock_chip_2: "Fast training",
+
+        about_title: "Why MindAltitude?",
+        about_text: "Aviation often depends on speed, clarity, and mental accuracy. MindAltitude is designed to make training more practical, more engaging, and more aligned with the real mental demands of flying.",
+        about_card_1_title: "Designed for aviation use",
+        about_card_1_text: "Training content built around real pilot needs, from student practice to operational mental agility.",
+        about_card_2_title: "Clear and efficient",
+        about_card_2_text: "A focused interface inspired by modern cockpit logic, built to reduce distraction and support fast learning.",
+        about_card_3_title: "Practice with purpose",
+        about_card_3_text: "Improve speed, confidence, and mental fluency with short, targeted exercises you can repeat regularly.",
+
+        features_title: "Core features",
+        features_text: "A modular training experience for pilots who want sharper mental tools, quicker reactions, and better day-to-day calculation habits.",
+        feature_1_title: "VFR mental training",
+        feature_1_text: "Practice the calculations and reasoning commonly used in visual flying: heading, wind correction, drift awareness, timing, and practical navigation logic.",
+        feature_2_title: "IFR-oriented exercises",
+        feature_2_text: "Reinforce the mental discipline needed for instrument flying with structured exercises built around precision and fast decision-making.",
+        feature_3_title: "Quick aviation conversions",
+        feature_3_text: "Train the conversions pilots use all the time: nautical miles, kilometers, feet, meters, knots, kilograms, pounds, and more.",
+        feature_4_title: "Fast and practical format",
+        feature_4_text: "Short, efficient sessions designed to fit into daily training, briefing preparation, or recurrent practice.",
+
+        screenshots_title: "Screenshots",
+        screenshots_text: "Replace these placeholders with your real iPhone or iPad screenshots once ready.",
+        shot_1: "Add screenshot 1 here",
+        shot_2: "Add screenshot 2 here",
+        shot_3: "Add screenshot 3 here",
+
+        download_title: "Coming soon on the App Store",
+        download_text: "MindAltitude is being prepared for release. Stay tuned for the first version and discover a new way to train aviation mental skills on iPhone and iPad.",
+        download_button: "App Store link coming soon",
+
+        contact_title: "Contact",
+        contact_text: "Add your email address here when you are ready, for example: <strong>contact@mindaltitude.com</strong>",
+
+        footer_copy: "© 2026 MindAltitude. All rights reserved.",
+        footer_privacy: "Privacy Policy",
+        footer_terms: "Terms",
+        footer_contact: "Contact"
+      },
+
+      fr: {
+        nav_about: "À propos",
+        nav_features: "Fonctionnalités",
+        nav_screenshots: "Captures",
+        nav_download: "Téléchargement",
+        nav_contact: "Contact",
+
+        eyebrow: "Application d'entraînement mental aéronautique",
+        hero_title: "Train faster. Think sharper. Fly smarter.",
+        hero_text: "MindAltitude aide les pilotes et élèves pilotes à développer les réflexes mentaux utiles en aviation : calculs rapides, conversions pratiques, entraînement VFR et IFR, dans une interface claire inspirée du cockpit.",
+        hero_cta_primary: "Bientôt sur l’App Store",
+        hero_cta_secondary: "Découvrir les fonctionnalités",
+        hero_point_1: "✈️ Pensée pour les pilotes et élèves pilotes",
+        hero_point_2: "🧮 Calcul mental aéronautique rapide",
+        hero_point_3: "📱 Expérience propre sur iPhone et iPad",
+
+        mock_small: "Modules d'entraînement",
+        mock_title: "Entraînement mental aéronautique pratique",
+        mock_panel_1_title: "Entraînement VFR",
+        mock_panel_1_text: "Vent, cap, dérive, temps et logique de navigation.",
+        mock_panel_2_title: "Exercices IFR",
+        mock_panel_2_text: "Entraînement mental structuré pour le vol aux instruments.",
+        mock_panel_3_title: "Conversions rapides",
+        mock_panel_3_text: "NM, km, ft, m, kt, kg, lb et plus encore.",
+        mock_chip_1: "Pensée pilote",
+        mock_chip_2: "Entraînement rapide",
+
+        about_title: "Pourquoi MindAltitude ?",
+        about_text: "En aviation, la rapidité, la clarté et la précision mentale comptent souvent. MindAltitude a été conçue pour rendre l'entraînement plus pratique, plus engageant et plus proche des exigences réelles du pilotage.",
+        about_card_1_title: "Conçue pour l’aviation",
+        about_card_1_text: "Un contenu d’entraînement construit autour des vrais besoins des pilotes, de la formation initiale à l’agilité mentale opérationnelle.",
+        about_card_2_title: "Claire et efficace",
+        about_card_2_text: "Une interface focalisée, inspirée de la logique des cockpits modernes, pour limiter les distractions et favoriser un apprentissage rapide.",
+        about_card_3_title: "Un entraînement utile",
+        about_card_3_text: "Améliore la vitesse, la confiance et l’aisance mentale grâce à des exercices courts, ciblés et faciles à répéter.",
+
+        features_title: "Fonctionnalités principales",
+        features_text: "Une expérience modulaire pour les pilotes qui veulent des outils mentaux plus affûtés, des réactions plus rapides et de meilleures habitudes de calcul au quotidien.",
+        feature_1_title: "Entraînement mental VFR",
+        feature_1_text: "Travaille les calculs et raisonnements couramment utilisés en vol à vue : cap, correction de vent, dérive, temps et logique pratique de navigation.",
+        feature_2_title: "Exercices orientés IFR",
+        feature_2_text: "Renforce la discipline mentale nécessaire au vol aux instruments grâce à des exercices structurés autour de la précision et de la rapidité de décision.",
+        feature_3_title: "Conversions aéronautiques rapides",
+        feature_3_text: "Entraîne les conversions utilisées en permanence par les pilotes : nautiques, kilomètres, pieds, mètres, nœuds, kilogrammes, livres, etc.",
+        feature_4_title: "Format rapide et pratique",
+        feature_4_text: "Des sessions courtes et efficaces, conçues pour s’intégrer à l’entraînement quotidien, à la préparation des briefings ou à la révision régulière.",
+
+        screenshots_title: "Captures d’écran",
+        screenshots_text: "Remplace ces espaces par tes vraies captures iPhone ou iPad lorsque tu seras prêt.",
+        shot_1: "Ajoute ici la capture 1",
+        shot_2: "Ajoute ici la capture 2",
+        shot_3: "Ajoute ici la capture 3",
+
+        download_title: "Bientôt sur l’App Store",
+        download_text: "MindAltitude est en préparation pour sa sortie. Reste à l’écoute pour la première version et découvre une nouvelle façon d’entraîner tes compétences mentales aéronautiques sur iPhone et iPad.",
+        download_button: "Lien App Store bientôt disponible",
+
+        contact_title: "Contact",
+        contact_text: "Ajoute ici ton adresse e-mail lorsque tu seras prêt, par exemple : <strong>contact@mindaltitude.com</strong>",
+
+        footer_copy: "© 2026 MindAltitude. Tous droits réservés.",
+        footer_privacy: "Politique de confidentialité",
+        footer_terms: "Conditions",
+        footer_contact: "Contact"
+      }
+    };
+
+    function setLanguage(lang) {
+      document.documentElement.lang = lang;
+
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (translations[lang][key]) {
+          el.innerHTML = translations[lang][key];
+        }
+      });
+
+      document.getElementById("lang-en").classList.toggle("active", lang === "en");
+      document.getElementById("lang-fr").classList.toggle("active", lang === "fr");
+
+      localStorage.setItem("mindaltitude-lang", lang);
+    }
+
+    document.getElementById("lang-en").addEventListener("click", () => setLanguage("en"));
+    document.getElementById("lang-fr").addEventListener("click", () => setLanguage("fr"));
+
+    const savedLang = localStorage.getItem("mindaltitude-lang");
+    const browserLang = navigator.language && navigator.language.startsWith("fr") ? "fr" : "en";
+    setLanguage(savedLang || browserLang);
+  </script>
+</body>
+</html>      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background:
         radial-gradient(circle at top right, rgba(93, 176, 255, 0.16), transparent 30%),
         radial-gradient(circle at top left, rgba(143, 209, 255, 0.10), transparent 22%),
