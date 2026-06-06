@@ -657,3 +657,81 @@ h1 {
     padding: 22px;
   }
 }
+#screenshots .screenshot-showcase,
+#screenshots .screenshot-grid {
+  display: grid !important;
+  grid-template-columns: repeat(6, minmax(120px, 1fr)) !important;
+  gap: 18px !important;
+  align-items: start !important;
+  margin-top: 34px !important;
+  max-width: 1120px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+#screenshots .iphone-shot,
+#screenshots .screenshot-card {
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: center !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+#screenshots .iphone-shot img,
+#screenshots .screenshot-card img {
+  width: 100% !important;
+  max-width: 170px !important;
+  height: auto !important;
+  display: block !important;
+  margin: 0 auto !important;
+  object-fit: contain !important;
+  border-radius: 24px !important;
+  border: 4px solid rgba(255,255,255,0.18) !important;
+  background: #050b12 !important;
+  box-shadow:
+    0 18px 42px rgba(0,0,0,0.40),
+    inset 0 0 0 1px rgba(255,255,255,0.18) !important;
+}
+
+#screenshots .iphone-shot figcaption,
+#screenshots .screenshot-card figcaption {
+  margin-top: 12px !important;
+  padding: 0 !important;
+  color: var(--text) !important;
+  font-size: 0.92rem !important;
+  font-weight: 850 !important;
+  line-height: 1.25 !important;
+  letter-spacing: -0.02em !important;
+}
+
+#screenshots .iphone-shot p,
+#screenshots .screenshot-card p {
+  margin: 6px auto 0 !important;
+  max-width: 190px !important;
+  color: var(--muted) !important;
+  font-size: 0.82rem !important;
+  line-height: 1.35 !important;
+}
+
+@media (max-width: 1180px) {
+  #screenshots .screenshot-showcase,
+  #screenshots .screenshot-grid {
+    grid-template-columns: repeat(3, minmax(140px, 1fr)) !important;
+    max-width: 720px !important;
+  }
+}
+
+@media (max-width: 700px) {
+  #screenshots .screenshot-showcase,
+  #screenshots .screenshot-grid {
+    grid-template-columns: 1fr !important;
+    max-width: 260px !important;
+  }
+
+  #screenshots .iphone-shot img,
+  #screenshots .screenshot-card img {
+    max-width: 230px !important;
+  }
+}
