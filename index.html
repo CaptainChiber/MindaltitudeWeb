@@ -1289,3 +1289,1294 @@
   </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>MindAltitude — Aviation Mental Training App</title>
+
+  <meta
+    name="description"
+    content="MindAltitude is a bilingual aviation mental training app for pilots and student pilots. Train mental math, VFR, IFR, conversions and challenge mode on iPhone."
+  />
+
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg-2: #0c1b2e;
+      --card: rgba(255, 255, 255, 0.06);
+      --card-border: rgba(255, 255, 255, 0.12);
+      --text: #f4f7fb;
+      --muted: #b7c4d6;
+      --accent: #5db0ff;
+      --accent-2: #8fd1ff;
+      --highlight: #1f7bd8;
+      --warning: #ffb020;
+      --shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+      --radius: 22px;
+      --max-width: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(93, 176, 255, 0.16), transparent 30%),
+        radial-gradient(circle at top left, rgba(143, 209, 255, 0.10), transparent 22%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(var(--max-width), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(14px);
+      background: rgba(7, 17, 31, 0.74);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--accent), var(--highlight));
+      box-shadow: var(--shadow);
+      font-size: 21px;
+      color: white;
+    }
+
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      color: var(--muted);
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
+    }
+
+    .nav a:hover { color: var(--text); }
+
+    .lang-switch {
+      display: inline-flex;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .lang-switch button {
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      padding: 9px 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .lang-switch button.active {
+      background: linear-gradient(135deg, var(--accent), var(--highlight));
+      color: white;
+    }
+
+    .hero { padding: 76px 0 58px; }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(93, 176, 255, 0.12);
+      color: var(--accent-2);
+      font-size: 0.86rem;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      margin-bottom: 18px;
+      border: 1px solid rgba(93, 176, 255, 0.22);
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      font-size: clamp(2.5rem, 4.5vw, 4.6rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    .hero p.lead {
+      margin: 0 0 28px;
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 680px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 26px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 22px;
+      border-radius: 14px;
+      font-weight: 700;
+      transition: transform 0.2s ease, background 0.2s ease, opacity 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .button:hover { transform: translateY(-1px); }
+
+    .button-primary {
+      background: linear-gradient(135deg, var(--accent), var(--highlight));
+      color: white;
+      box-shadow: var(--shadow);
+    }
+
+    .button-secondary {
+      background: rgba(255,255,255,0.04);
+      border-color: rgba(255,255,255,0.12);
+      color: var(--text);
+    }
+
+    .hero-points {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 18px;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .hero-points span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .phone-card {
+      position: relative;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 32px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      max-width: 395px;
+      margin-left: auto;
+    }
+
+    .phone-screen {
+      border-radius: 24px;
+      overflow: hidden;
+      background: linear-gradient(180deg, #10233b 0%, #081321 100%);
+      min-height: 700px;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .mock-status {
+      display: flex;
+      justify-content: space-between;
+      color: #dce8f6;
+      font-size: 0.82rem;
+      opacity: 0.85;
+      margin-bottom: 18px;
+    }
+
+    .mock-title { text-align: center; margin: 10px 0 24px; }
+
+    .mock-title .small {
+      color: var(--accent-2);
+      font-size: 0.88rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .mock-title h2 {
+      margin: 8px 0 0;
+      font-size: 1.8rem;
+      line-height: 1.1;
+    }
+
+    .mock-panels { display: grid; gap: 14px; }
+
+    .mock-panel {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .mock-panel strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .mock-panel span {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .mock-footer {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .mock-chip {
+      background: rgba(93,176,255,0.10);
+      border: 1px solid rgba(93,176,255,0.16);
+      color: var(--accent-2);
+      padding: 12px 14px;
+      border-radius: 16px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.92rem;
+    }
+
+    section { padding: 36px 0; }
+
+    .section-title {
+      max-width: 780px;
+      margin-bottom: 24px;
+    }
+
+    .section-title h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 3vw, 2.7rem);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+    }
+
+    .section-title p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 16px;
+      font-size: 1.2rem;
+      background: rgba(93,176,255,0.12);
+      border: 1px solid rgba(93,176,255,0.18);
+      color: var(--accent-2);
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 1.15rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.97rem;
+    }
+
+    .feature-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .feature {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .feature h3 {
+      margin: 0 0 10px;
+      font-size: 1.12rem;
+    }
+
+    .feature p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .premium-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .premium-card {
+      background:
+        linear-gradient(135deg, rgba(93,176,255,0.14), rgba(31,123,216,0.10)),
+        rgba(255,255,255,0.05);
+      border: 1px solid rgba(93,176,255,0.20);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .price {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 8px;
+      margin: 14px 0 18px;
+    }
+
+    .price strong {
+      font-size: 2.3rem;
+      line-height: 1;
+    }
+
+    .price span {
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .premium-list {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .premium-list li {
+      display: flex;
+      gap: 10px;
+      color: var(--muted);
+      align-items: flex-start;
+    }
+
+    .premium-list li::before {
+      content: "✓";
+      color: var(--accent-2);
+      font-weight: 900;
+    }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 22px;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--shadow);
+    }
+
+    .compare-table th,
+    .compare-table td {
+      padding: 16px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .compare-table th {
+      color: var(--text);
+      background: rgba(255,255,255,0.05);
+      font-size: 0.95rem;
+    }
+
+    .compare-table td { color: var(--muted); }
+
+    .compare-table tr:last-child td { border-bottom: 0; }
+
+    .yes { color: var(--accent-2); font-weight: 800; }
+
+    .limited { color: var(--warning); font-weight: 800; }
+
+    .screenshots {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .shot {
+      aspect-ratio: 9 / 19;
+      border-radius: 26px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)),
+        linear-gradient(180deg, #10233b, #081321);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      text-align: center;
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .cta {
+      margin-top: 18px;
+      background:
+        linear-gradient(135deg, rgba(93,176,255,0.16), rgba(31,123,216,0.16)),
+        rgba(255,255,255,0.04);
+      border: 1px solid rgba(93,176,255,0.18);
+      border-radius: 28px;
+      padding: 34px;
+      box-shadow: var(--shadow);
+    }
+
+    .cta h2 {
+      margin: 0 0 12px;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      line-height: 1.15;
+    }
+
+    .cta p {
+      margin: 0 0 22px;
+      color: var(--muted);
+      max-width: 760px;
+    }
+
+    .disclaimer {
+      margin-top: 22px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(255,176,32,0.08);
+      border: 1px solid rgba(255,176,32,0.18);
+      color: #f4d79a;
+      font-size: 0.94rem;
+    }
+
+    .privacy-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      color: var(--muted);
+    }
+
+    .privacy-card h3 {
+      color: var(--text);
+      margin: 22px 0 8px;
+    }
+
+    .privacy-card h3:first-child { margin-top: 0; }
+
+    .privacy-card ul { margin-top: 8px; }
+
+    footer {
+      padding: 34px 0 50px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 22px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a:hover { color: var(--text); }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .grid-3,
+      .screenshots,
+      .feature-list,
+      .premium-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .phone-card {
+        margin: 0 auto;
+        max-width: 420px;
+      }
+
+      .hero { padding-top: 46px; }
+    }
+
+    @media (max-width: 720px) {
+      .topbar-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-wrap {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .phone-screen { min-height: 620px; }
+
+      .cta,
+      .card,
+      .feature,
+      .premium-card,
+      .privacy-card {
+        padding: 20px;
+      }
+
+      h1 { font-size: 2.4rem; }
+
+      .compare-table th,
+      .compare-table td {
+        padding: 13px 10px;
+        font-size: 0.92rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a href="#" class="brand">
+        <span class="brand-logo">✈︎</span>
+        <span>MindAltitude</span>
+      </a>
+
+      <div class="nav-wrap">
+        <nav class="nav">
+          <a href="#about" data-i18n="nav_about">About</a>
+          <a href="#features" data-i18n="nav_features">Features</a>
+          <a href="#premium" data-i18n="nav_premium">Premium</a>
+          <a href="#screenshots" data-i18n="nav_screenshots">Screenshots</a>
+          <a href="#download" data-i18n="nav_download">Release</a>
+          <a href="#contact" data-i18n="nav_contact">Contact</a>
+          <a href="#privacy" data-i18n="nav_privacy">Privacy</a>
+        </nav>
+
+        <div class="lang-switch" aria-label="Language switch">
+          <button id="lang-en" class="active" type="button">EN</button>
+          <button id="lang-fr" type="button">FR</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow" data-i18n="eyebrow">Aviation Mental Training App</span>
+
+          <h1 data-i18n="hero_title">Train faster. Think sharper. Fly smarter.</h1>
+
+          <p class="lead" data-i18n="hero_text">
+            MindAltitude helps pilots and student pilots build the mental reflexes that matter in aviation.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="#download" data-i18n="hero_cta_primary">
+              Coming Soon on the App Store
+            </a>
+            <a class="button button-secondary" href="#premium" data-i18n="hero_cta_secondary">
+              See Premium
+            </a>
+          </div>
+
+          <div class="hero-points">
+            <span data-i18n="hero_point_1">✈️ Built for pilots and students</span>
+            <span data-i18n="hero_point_2">🧮 Fast aviation mental math</span>
+            <span data-i18n="hero_point_3">📱 Clean iPhone experience</span>
+          </div>
+        </div>
+
+        <div class="phone-card">
+          <div class="phone-screen">
+            <div>
+              <div class="mock-status">
+                <span>9:41</span>
+                <span>MindAltitude</span>
+              </div>
+
+              <div class="mock-title">
+                <div class="small" data-i18n="mock_small">Training Modules</div>
+                <h2 data-i18n="mock_title">Practical Aviation Mental Training</h2>
+              </div>
+
+              <div class="mock-panels">
+                <div class="mock-panel">
+                  <strong data-i18n="mock_panel_1_title">VFR Training</strong>
+                  <span data-i18n="mock_panel_1_text">Wind, heading, drift, timing, navigation logic.</span>
+                </div>
+
+                <div class="mock-panel">
+                  <strong data-i18n="mock_panel_2_title">IFR Practice</strong>
+                  <span data-i18n="mock_panel_2_text">Structured mental drills for instrument flying.</span>
+                </div>
+
+                <div class="mock-panel">
+                  <strong data-i18n="mock_panel_3_title">Challenge Mode</strong>
+                  <span data-i18n="mock_panel_3_text">Short timed sessions to build speed and confidence.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mock-footer">
+              <div class="mock-chip" data-i18n="mock_chip_1">Pilot-focused</div>
+              <div class="mock-chip" data-i18n="mock_chip_2">Fast training</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-title">
+          <h2 data-i18n="about_title">Why MindAltitude?</h2>
+          <p data-i18n="about_text">
+            Aviation often depends on speed, clarity, and mental accuracy.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <div class="card-icon">🛫</div>
+            <h3 data-i18n="about_card_1_title">Designed for aviation use</h3>
+            <p data-i18n="about_card_1_text">Training content built around real pilot needs.</p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">⚙️</div>
+            <h3 data-i18n="about_card_2_title">Clear and efficient</h3>
+            <p data-i18n="about_card_2_text">A focused interface inspired by modern cockpit logic.</p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">📈</div>
+            <h3 data-i18n="about_card_3_title">Practice with purpose</h3>
+            <p data-i18n="about_card_3_text">Improve speed, confidence, and mental fluency.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="container">
+        <div class="section-title">
+          <h2 data-i18n="features_title">Core features</h2>
+          <p data-i18n="features_text">
+            A modular training experience for pilots who want sharper mental tools.
+          </p>
+        </div>
+
+        <div class="feature-list">
+          <article class="feature">
+            <h3 data-i18n="feature_1_title">VFR mental training</h3>
+            <p data-i18n="feature_1_text">Practice heading, wind correction, drift, timing and practical navigation logic.</p>
+          </article>
+
+          <article class="feature">
+            <h3 data-i18n="feature_2_title">IFR-oriented exercises</h3>
+            <p data-i18n="feature_2_text">Reinforce the mental discipline needed for instrument flying.</p>
+          </article>
+
+          <article class="feature">
+            <h3 data-i18n="feature_3_title">Quick aviation conversions</h3>
+            <p data-i18n="feature_3_text">Train nautical miles, kilometers, feet, meters, knots, kilograms, pounds and more.</p>
+          </article>
+
+          <article class="feature">
+            <h3 data-i18n="feature_4_title">Challenge mode</h3>
+            <p data-i18n="feature_4_text">Build speed with short timed sessions and progressive repetition.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="premium">
+      <div class="container">
+        <div class="section-title">
+          <h2 data-i18n="premium_title">Free to start. Premium to train without limits.</h2>
+          <p data-i18n="premium_text">
+            Try MindAltitude for free, then unlock unlimited training, full challenges, IFR modules and detailed explanations.
+          </p>
+        </div>
+
+        <div class="premium-grid">
+          <div class="premium-card">
+            <span class="eyebrow" data-i18n="premium_badge">MindAltitude Premium</span>
+            <h2 data-i18n="premium_card_title">Unlock the full cockpit training experience.</h2>
+
+            <div class="price">
+              <strong data-i18n="premium_price">€9.99</strong>
+              <span data-i18n="premium_price_note">one-time unlock</span>
+            </div>
+
+            <ul class="premium-list">
+              <li data-i18n="premium_item_1">Unlimited training questions</li>
+              <li data-i18n="premium_item_2">Full challenge mode</li>
+              <li data-i18n="premium_item_3">All VFR and IFR exercises</li>
+              <li data-i18n="premium_item_4">Detailed explanations</li>
+              <li data-i18n="premium_item_5">Future premium updates included</li>
+            </ul>
+          </div>
+
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th data-i18n="compare_feature">Feature</th>
+                <th data-i18n="compare_free">Free</th>
+                <th data-i18n="compare_premium">Premium</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-i18n="compare_row_1">Training questions</td>
+                <td class="limited" data-i18n="compare_limited_daily">Limited daily</td>
+                <td class="yes" data-i18n="compare_unlimited">Unlimited</td>
+              </tr>
+              <tr>
+                <td data-i18n="compare_row_2">Challenge mode</td>
+                <td class="limited" data-i18n="compare_limited_challenge">3-question demo</td>
+                <td class="yes" data-i18n="compare_full">Full</td>
+              </tr>
+              <tr>
+                <td data-i18n="compare_row_3">IFR training</td>
+                <td class="limited" data-i18n="compare_locked">Locked</td>
+                <td class="yes" data-i18n="compare_included">Included</td>
+              </tr>
+              <tr>
+                <td data-i18n="compare_row_4">Detailed explanations</td>
+                <td class="limited" data-i18n="compare_limited">Limited</td>
+                <td class="yes" data-i18n="compare_included">Included</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="screenshots">
+      <div class="container">
+        <div class="section-title">
+          <h2 data-i18n="screenshots_title">Screenshots</h2>
+          <p data-i18n="screenshots_text">
+            Replace these placeholders with your real iPhone screenshots once ready.
+          </p>
+        </div>
+
+        <div class="screenshots">
+          <div class="shot" data-i18n="shot_1">Add screenshot 1 here</div>
+          <div class="shot" data-i18n="shot_2">Add screenshot 2 here</div>
+          <div class="shot" data-i18n="shot_3">Add screenshot 3 here</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="download">
+      <div class="container">
+        <div class="cta">
+          <h2 data-i18n="download_title">Coming soon on the App Store</h2>
+          <p data-i18n="download_text">
+            MindAltitude will launch with a free training mode and a Premium unlock.
+          </p>
+          <a class="button button-primary" href="#" data-i18n="download_button">App Store link coming soon</a>
+
+          <p class="disclaimer" data-i18n="footer_disclaimer">
+            MindAltitude is a training aid and does not replace official flight training, approved procedures or operational documentation.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-title">
+          <h2 data-i18n="contact_title">Contact</h2>
+          <p data-i18n="contact_text">
+            Contact: <strong>captainchiber@gmail.com</strong>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="privacy">
+      <div class="container">
+        <div class="section-title">
+          <h2 data-i18n="privacy_title">Privacy Policy</h2>
+          <p data-i18n="privacy_updated">Last updated: June 2026</p>
+        </div>
+
+        <div class="privacy-card">
+          <h3 data-i18n="privacy_en_title">English</h3>
+          <p data-i18n="privacy_en_intro">MindAltitude is designed to provide aviation mental training exercises for pilots and student pilots.</p>
+
+          <h3 data-i18n="privacy_en_data_title">Data Collection</h3>
+          <p data-i18n="privacy_en_data_text">MindAltitude does not collect, store, transmit or share any personal information.</p>
+          <ul>
+            <li data-i18n="privacy_en_li_1">No user account is required.</li>
+            <li data-i18n="privacy_en_li_2">No advertising is used.</li>
+            <li data-i18n="privacy_en_li_3">No tracking is performed.</li>
+            <li data-i18n="privacy_en_li_4">No analytics data is collected.</li>
+            <li data-i18n="privacy_en_li_5">No location, health or sensitive data is collected.</li>
+            <li data-i18n="privacy_en_li_6">No information is shared with third parties.</li>
+          </ul>
+
+          <h3 data-i18n="privacy_en_purchases_title">Purchases</h3>
+          <p data-i18n="privacy_en_purchases_text">If Premium features are offered, purchases are processed exclusively through Apple’s App Store using Apple’s secure payment systems. The developer does not receive or store payment information.</p>
+
+          <h3 data-i18n="privacy_fr_title">Français</h3>
+          <p data-i18n="privacy_fr_intro">MindAltitude est une application d'entraînement mental aéronautique destinée aux pilotes et élèves pilotes.</p>
+
+          <h3 data-i18n="privacy_fr_data_title">Collecte des données</h3>
+          <p data-i18n="privacy_fr_data_text">MindAltitude ne collecte, ne stocke, ne transmet et ne partage aucune donnée personnelle.</p>
+          <ul>
+            <li data-i18n="privacy_fr_li_1">Aucun compte utilisateur n’est requis.</li>
+            <li data-i18n="privacy_fr_li_2">Aucune publicité n’est utilisée.</li>
+            <li data-i18n="privacy_fr_li_3">Aucun suivi utilisateur n’est effectué.</li>
+            <li data-i18n="privacy_fr_li_4">Aucune donnée analytique n’est collectée.</li>
+            <li data-i18n="privacy_fr_li_5">Aucune donnée de localisation, de santé ou sensible n’est collectée.</li>
+            <li data-i18n="privacy_fr_li_6">Aucune information n’est partagée avec des tiers.</li>
+          </ul>
+
+          <h3 data-i18n="privacy_fr_purchases_title">Achats</h3>
+          <p data-i18n="privacy_fr_purchases_text">Si des fonctionnalités Premium sont proposées, les achats sont traités exclusivement par l’App Store d’Apple via les systèmes de paiement sécurisés d’Apple. Le développeur ne reçoit ni ne stocke aucune information bancaire.</p>
+
+          <h3 data-i18n="privacy_contact_title">Contact</h3>
+          <p data-i18n="privacy_contact_text">For any privacy question: <strong>captainchiber@gmail.com</strong></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div data-i18n="footer_copy">© 2026 MindAltitude. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="#privacy" data-i18n="footer_privacy">Privacy Policy</a>
+        <a href="#download" data-i18n="footer_terms">Terms</a>
+        <a href="#contact" data-i18n="footer_contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const translations = {
+      en: {
+        nav_about: "About",
+        nav_features: "Features",
+        nav_premium: "Premium",
+        nav_screenshots: "Screenshots",
+        nav_download: "Release",
+        nav_contact: "Contact",
+        nav_privacy: "Privacy",
+
+        eyebrow: "Aviation Mental Training App",
+        hero_title: "Train faster. Think sharper. Fly smarter.",
+        hero_text:
+          "MindAltitude helps pilots and student pilots build the mental reflexes that matter in aviation: quick calculations, useful conversions, VFR and IFR practice, challenge mode and structured cockpit-oriented training.",
+        hero_cta_primary: "Coming Soon on the App Store",
+        hero_cta_secondary: "See Premium",
+        hero_point_1: "✈️ Built for pilots and students",
+        hero_point_2: "🧮 Fast aviation mental math",
+        hero_point_3: "📱 Clean iPhone experience",
+
+        mock_small: "Training Modules",
+        mock_title: "Practical Aviation Mental Training",
+        mock_panel_1_title: "VFR Training",
+        mock_panel_1_text: "Wind, heading, drift, timing and navigation logic.",
+        mock_panel_2_title: "IFR Practice",
+        mock_panel_2_text: "Structured mental drills for instrument flying.",
+        mock_panel_3_title: "Challenge Mode",
+        mock_panel_3_text: "Short timed sessions to build speed and confidence.",
+        mock_chip_1: "Pilot-focused",
+        mock_chip_2: "Fast training",
+
+        about_title: "Why MindAltitude?",
+        about_text:
+          "Aviation often depends on speed, clarity and mental accuracy. MindAltitude is designed to make training more practical, more engaging and closer to the real cognitive demands of flying.",
+        about_card_1_title: "Designed for aviation use",
+        about_card_1_text:
+          "Training content built around real pilot needs, from student practice to operational mental agility.",
+        about_card_2_title: "Clear and efficient",
+        about_card_2_text:
+          "A focused interface inspired by modern cockpit logic, built to reduce distraction and support fast learning.",
+        about_card_3_title: "Practice with purpose",
+        about_card_3_text:
+          "Improve speed, confidence and mental fluency with short targeted exercises you can repeat regularly.",
+
+        features_title: "Core features",
+        features_text:
+          "A modular training experience for pilots who want sharper mental tools, quicker reactions and better day-to-day calculation habits.",
+        feature_1_title: "VFR mental training",
+        feature_1_text:
+          "Practice heading, wind correction, drift awareness, timing and practical navigation logic.",
+        feature_2_title: "IFR-oriented exercises",
+        feature_2_text:
+          "Reinforce the mental discipline needed for instrument flying with structured exercises built around precision and fast decision-making.",
+        feature_3_title: "Quick aviation conversions",
+        feature_3_text:
+          "Train nautical miles, kilometers, feet, meters, knots, kilograms, pounds and more.",
+        feature_4_title: "Challenge mode",
+        feature_4_text:
+          "Build speed with short timed sessions and progressive repetition.",
+
+        premium_title: "Free to start. Premium to train without limits.",
+        premium_text:
+          "Try MindAltitude for free, then unlock unlimited training, full challenges, IFR modules and detailed explanations.",
+        premium_badge: "MindAltitude Premium",
+        premium_card_title: "Unlock the full cockpit training experience.",
+        premium_price: "€9.99",
+        premium_price_note: "one-time unlock",
+        premium_item_1: "Unlimited training questions",
+        premium_item_2: "Full challenge mode",
+        premium_item_3: "All VFR and IFR exercises",
+        premium_item_4: "Detailed explanations",
+        premium_item_5: "Future premium updates included",
+
+        compare_feature: "Feature",
+        compare_free: "Free",
+        compare_premium: "Premium",
+        compare_row_1: "Training questions",
+        compare_row_2: "Challenge mode",
+        compare_row_3: "IFR training",
+        compare_row_4: "Detailed explanations",
+        compare_limited_daily: "Limited daily",
+        compare_limited_challenge: "3-question demo",
+        compare_locked: "Locked",
+        compare_limited: "Limited",
+        compare_unlimited: "Unlimited",
+        compare_full: "Full",
+        compare_included: "Included",
+
+        screenshots_title: "Screenshots",
+        screenshots_text:
+          "Replace these placeholders with your real iPhone screenshots once ready.",
+        shot_1: "Add screenshot 1 here",
+        shot_2: "Add screenshot 2 here",
+        shot_3: "Add screenshot 3 here",
+
+        download_title: "Coming soon on the App Store",
+        download_text:
+          "MindAltitude will launch with a free training mode and a Premium unlock for unlimited exercises, full challenges and IFR practice.",
+        download_button: "App Store link coming soon",
+
+        contact_title: "Contact",
+        contact_text: "Contact: <strong>captainchiber@gmail.com</strong>",
+
+        footer_disclaimer:
+          "MindAltitude is a training aid and does not replace official flight training, approved procedures or operational documentation.",
+        footer_copy: "© 2026 MindAltitude. All rights reserved.",
+        footer_privacy: "Privacy Policy",
+        footer_terms: "Terms",
+        footer_contact: "Contact",
+
+        privacy_title: "Privacy Policy / Politique de confidentialité",
+        privacy_updated: "Last updated: June 2026",
+        privacy_en_title: "English",
+        privacy_en_intro:
+          "MindAltitude is designed to provide aviation mental training exercises for pilots and student pilots.",
+        privacy_en_data_title: "Data Collection",
+        privacy_en_data_text:
+          "MindAltitude does not collect, store, transmit or share any personal information.",
+        privacy_en_li_1: "No user account is required.",
+        privacy_en_li_2: "No advertising is used.",
+        privacy_en_li_3: "No tracking is performed.",
+        privacy_en_li_4: "No analytics data is collected.",
+        privacy_en_li_5: "No location, health or sensitive data is collected.",
+        privacy_en_li_6: "No information is shared with third parties.",
+        privacy_en_purchases_title: "Purchases",
+        privacy_en_purchases_text:
+          "If Premium features are offered, purchases are processed exclusively through Apple’s App Store using Apple’s secure payment systems. The developer does not receive or store payment information.",
+        privacy_fr_title: "Français",
+        privacy_fr_intro:
+          "MindAltitude est une application d'entraînement mental aéronautique destinée aux pilotes et élèves pilotes.",
+        privacy_fr_data_title: "Collecte des données",
+        privacy_fr_data_text:
+          "MindAltitude ne collecte, ne stocke, ne transmet et ne partage aucune donnée personnelle.",
+        privacy_fr_li_1: "Aucun compte utilisateur n’est requis.",
+        privacy_fr_li_2: "Aucune publicité n’est utilisée.",
+        privacy_fr_li_3: "Aucun suivi utilisateur n’est effectué.",
+        privacy_fr_li_4: "Aucune donnée analytique n’est collectée.",
+        privacy_fr_li_5: "Aucune donnée de localisation, de santé ou sensible n’est collectée.",
+        privacy_fr_li_6: "Aucune information n’est partagée avec des tiers.",
+        privacy_fr_purchases_title: "Achats",
+        privacy_fr_purchases_text:
+          "Si des fonctionnalités Premium sont proposées, les achats sont traités exclusivement par l’App Store d’Apple via les systèmes de paiement sécurisés d’Apple. Le développeur ne reçoit ni ne stocke aucune information bancaire.",
+        privacy_contact_title: "Contact",
+        privacy_contact_text:
+          "For any privacy question: <strong>captainchiber@gmail.com</strong>"
+      },
+
+      fr: {
+        nav_about: "À propos",
+        nav_features: "Fonctionnalités",
+        nav_premium: "Premium",
+        nav_screenshots: "Captures",
+        nav_download: "Sortie",
+        nav_contact: "Contact",
+        nav_privacy: "Confidentialité",
+
+        eyebrow: "Application d'entraînement mental aéronautique",
+        hero_title: "Calculez plus vite. Décidez plus juste. Volez plus serein.",
+        hero_text:
+          "MindAltitude aide les pilotes et élèves pilotes à développer les réflexes mentaux utiles en aviation : calculs rapides, conversions pratiques, entraînement VFR et IFR, mode challenge et exercices structurés dans une interface inspirée du cockpit.",
+        hero_cta_primary: "Bientôt sur l’App Store",
+        hero_cta_secondary: "Voir Premium",
+        hero_point_1: "✈️ Pensée pour les pilotes et élèves pilotes",
+        hero_point_2: "🧮 Calcul mental aéronautique rapide",
+        hero_point_3: "📱 Expérience propre sur iPhone",
+
+        mock_small: "Modules d'entraînement",
+        mock_title: "Entraînement mental aéronautique pratique",
+        mock_panel_1_title: "Entraînement VFR",
+        mock_panel_1_text: "Vent, cap, dérive, temps et logique de navigation.",
+        mock_panel_2_title: "Exercices IFR",
+        mock_panel_2_text: "Entraînement mental structuré pour le vol aux instruments.",
+        mock_panel_3_title: "Mode Challenge",
+        mock_panel_3_text:
+          "Des sessions chronométrées pour gagner en vitesse et en confiance.",
+        mock_chip_1: "Pensée pilote",
+        mock_chip_2: "Entraînement rapide",
+
+        about_title: "Pourquoi MindAltitude ?",
+        about_text:
+          "En aviation, la rapidité, la clarté et la précision mentale comptent souvent. MindAltitude a été conçue pour rendre l'entraînement plus pratique, plus engageant et plus proche des exigences réelles du pilotage.",
+        about_card_1_title: "Conçue pour l’aviation",
+        about_card_1_text:
+          "Un contenu d’entraînement construit autour des vrais besoins des pilotes.",
+        about_card_2_title: "Claire et efficace",
+        about_card_2_text:
+          "Une interface inspirée de la logique des cockpits modernes pour limiter les distractions et favoriser un apprentissage rapide.",
+        about_card_3_title: "Un entraînement utile",
+        about_card_3_text:
+          "Améliore la vitesse, la confiance et l’aisance mentale grâce à des exercices courts et ciblés.",
+
+        features_title: "Fonctionnalités principales",
+        features_text:
+          "Une expérience modulaire pour les pilotes qui veulent des outils mentaux plus affûtés et des réactions plus rapides.",
+        feature_1_title: "Entraînement mental VFR",
+        feature_1_text:
+          "Travaille le cap, la correction de vent, la dérive, les temps et la logique pratique de navigation.",
+        feature_2_title: "Exercices orientés IFR",
+        feature_2_text:
+          "Renforce la discipline mentale nécessaire au vol aux instruments grâce à des exercices structurés.",
+        feature_3_title: "Conversions aéronautiques rapides",
+        feature_3_text:
+          "Entraîne les conversions utilisées en permanence par les pilotes : nautiques, kilomètres, pieds, mètres, nœuds, kilogrammes, livres et plus encore.",
+        feature_4_title: "Mode challenge",
+        feature_4_text:
+          "Développe la vitesse d’exécution grâce à des sessions courtes et chronométrées.",
+
+        premium_title:
+          "Gratuit pour commencer. Premium pour s’entraîner sans limites.",
+        premium_text:
+          "Essayez MindAltitude gratuitement, puis débloquez les exercices illimités, les challenges complets, les modules IFR et les explications détaillées.",
+        premium_badge: "MindAltitude Premium",
+        premium_card_title:
+          "Débloquez l’expérience complète d’entraînement cockpit.",
+        premium_price: "9,99 €",
+        premium_price_note: "achat unique",
+        premium_item_1: "Questions illimitées",
+        premium_item_2: "Mode challenge complet",
+        premium_item_3: "Tous les exercices VFR et IFR",
+        premium_item_4: "Explications détaillées",
+        premium_item_5: "Mises à jour Premium incluses",
+
+        compare_feature: "Fonction",
+        compare_free: "Gratuit",
+        compare_premium: "Premium",
+        compare_row_1: "Questions d’entraînement",
+        compare_row_2: "Mode challenge",
+        compare_row_3: "Entraînement IFR",
+        compare_row_4: "Explications détaillées",
+        compare_limited_daily: "Limité par jour",
+        compare_limited_challenge: "Démo 3 questions",
+        compare_locked: "Verrouillé",
+        compare_limited: "Limité",
+        compare_unlimited: "Illimité",
+        compare_full: "Complet",
+        compare_included: "Inclus",
+
+        screenshots_title: "Captures d’écran",
+        screenshots_text:
+          "Remplace ces espaces par tes vraies captures iPhone lorsque tu seras prêt.",
+        shot_1: "Ajoute ici la capture 1",
+        shot_2: "Ajoute ici la capture 2",
+        shot_3: "Ajoute ici la capture 3",
+
+        download_title: "Bientôt sur l’App Store",
+        download_text:
+          "MindAltitude proposera un mode gratuit pour découvrir l’app, puis un déblocage Premium pour accéder aux exercices illimités, aux challenges complets et à l’entraînement IFR.",
+        download_button: "Lien App Store bientôt disponible",
+
+        contact_title: "Contact",
+        contact_text: "Contact : <strong>captainchiber@gmail.com</strong>",
+
+        footer_disclaimer:
+          "MindAltitude est un outil d’entraînement et ne remplace pas la formation officielle, les procédures approuvées ou la documentation opérationnelle.",
+        footer_copy: "© 2026 MindAltitude. Tous droits réservés.",
+        footer_privacy: "Politique de confidentialité",
+        footer_terms: "Conditions",
+        footer_contact: "Contact",
+
+        privacy_title: "Politique de confidentialité / Privacy Policy",
+        privacy_updated: "Dernière mise à jour : juin 2026",
+        privacy_en_title: "English",
+        privacy_en_intro:
+          "MindAltitude is designed to provide aviation mental training exercises for pilots and student pilots.",
+        privacy_en_data_title: "Data Collection",
+        privacy_en_data_text:
+          "MindAltitude does not collect, store, transmit or share any personal information.",
+        privacy_en_li_1: "No user account is required.",
+        privacy_en_li_2: "No advertising is used.",
+        privacy_en_li_3: "No tracking is performed.",
+        privacy_en_li_4: "No analytics data is collected.",
+        privacy_en_li_5: "No location, health or sensitive data is collected.",
+        privacy_en_li_6: "No information is shared with third parties.",
+        privacy_en_purchases_title: "Purchases",
+        privacy_en_purchases_text:
+          "If Premium features are offered, purchases are processed exclusively through Apple’s App Store using Apple’s secure payment systems. The developer does not receive or store payment information.",
+        privacy_fr_title: "Français",
+        privacy_fr_intro:
+          "MindAltitude est une application d'entraînement mental aéronautique destinée aux pilotes et élèves pilotes.",
+        privacy_fr_data_title: "Collecte des données",
+        privacy_fr_data_text:
+          "MindAltitude ne collecte, ne stocke, ne transmet et ne partage aucune donnée personnelle.",
+        privacy_fr_li_1: "Aucun compte utilisateur n’est requis.",
+        privacy_fr_li_2: "Aucune publicité n’est utilisée.",
+        privacy_fr_li_3: "Aucun suivi utilisateur n’est effectué.",
+        privacy_fr_li_4: "Aucune donnée analytique n’est collectée.",
+        privacy_fr_li_5: "Aucune donnée de localisation, de santé ou sensible n’est collectée.",
+        privacy_fr_li_6: "Aucune information n’est partagée avec des tiers.",
+        privacy_fr_purchases_title: "Achats",
+        privacy_fr_purchases_text:
+          "Si des fonctionnalités Premium sont proposées, les achats sont traités exclusivement par l’App Store d’Apple via les systèmes de paiement sécurisés d’Apple. Le développeur ne reçoit ni ne stocke aucune information bancaire.",
+        privacy_contact_title: "Contact",
+        privacy_contact_text:
+          "Pour toute question relative à la confidentialité : <strong>captainchiber@gmail.com</strong>"
+      }
+    };
+
+    function setLanguage(lang, shouldPersist = true) {
+      document.documentElement.lang = lang;
+
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+
+        if (translations[lang][key]) {
+          el.innerHTML = translations[lang][key];
+        }
+      });
+
+      document
+        .getElementById("lang-en")
+        .classList.toggle("active", lang === "en");
+
+      document
+        .getElementById("lang-fr")
+        .classList.toggle("active", lang === "fr");
+
+      if (shouldPersist) {
+        localStorage.setItem("mindaltitude-lang", lang);
+      }
+    }
+
+    function detectPreferredLanguage() {
+      const savedLang = localStorage.getItem("mindaltitude-lang");
+
+      if (savedLang === "fr" || savedLang === "en") {
+        return savedLang;
+      }
+
+      const languages = navigator.languages && navigator.languages.length
+        ? navigator.languages
+        : [navigator.language || "en"];
+
+      const hasFrenchPreference = languages.some(lang =>
+        String(lang).toLowerCase().startsWith("fr")
+      );
+
+      return hasFrenchPreference ? "fr" : "en";
+    }
+
+    document
+      .getElementById("lang-en")
+      .addEventListener("click", () => setLanguage("en"));
+
+    document
+      .getElementById("lang-fr")
+      .addEventListener("click", () => setLanguage("fr"));
+
+    setLanguage(detectPreferredLanguage(), false);
+  </script>
+</body>
+</html>
