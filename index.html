@@ -1,3 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>MindAltitude — Pilot Mental Math Training</title>
+
+  <meta
+    name="description"
+    content="MindAltitude is an aviation mental training app for pilots and student pilots. Train VFR, IFR, wind, fuel, conversions and timed challenges on iPhone."
+  />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container nav-bar">
+      <a class="brand" href="index.html" aria-label="MindAltitude home">
+        <img src="AppStore-1024.png" alt="MindAltitude app icon" class="brand-icon" />
+        <span>MindAltitude</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#features" data-i18n="nav_features">Features</a>
+        <a href="#premium" data-i18n="nav_premium">Premium</a>
+        <a href="#screenshots" data-i18n="nav_screenshots">Screenshots</a>
+        <a href="privacy.html" data-i18n="nav_privacy">Privacy</a>
+        <a href="support.html" data-i18n="nav_support">Support</a>
+      </nav>
+
+      <div class="language-switch">
+        <button type="button" id="lang-en">EN</button>
+        <button type="button" id="lang-fr">FR</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
         <div class="hero-copy">
           <p class="eyebrow" data-i18n="hero_eyebrow">Aviation mental training for pilots</p>
           <h1 data-i18n="hero_title">Train faster. Think sharper. Fly smarter.</h1>
@@ -23,9 +65,11 @@
               <span>9:41</span>
               <span>MindAltitude</span>
             </div>
+
             <div class="app-logo-large">
               <img src="AppStore-1024.png" alt="" />
             </div>
+
             <h2 data-i18n="mock_title">Pilot Mental Training</h2>
 
             <div class="module-list">
@@ -33,10 +77,12 @@
                 <strong data-i18n="module_1_title">VFR Navigation</strong>
                 <span data-i18n="module_1_text">Wind, heading, drift and timing.</span>
               </div>
+
               <div class="module-card">
                 <strong data-i18n="module_2_title">Fuel & Conversions</strong>
                 <span data-i18n="module_2_text">Fast aviation calculations.</span>
               </div>
+
               <div class="module-card">
                 <strong data-i18n="module_3_title">Challenge Mode</strong>
                 <span data-i18n="module_3_text">Timed drills with instant feedback.</span>
@@ -113,6 +159,7 @@
             <strong data-i18n="premium_price">€9.99</strong>
             <span data-i18n="premium_price_note">one-time purchase</span>
           </div>
+
           <ul>
             <li data-i18n="premium_li_1">Unlimited training questions</li>
             <li data-i18n="premium_li_2">Full timed challenges</li>
@@ -128,43 +175,43 @@
       <div class="container">
         <div class="section-heading">
           <p class="eyebrow" data-i18n="screens_eyebrow">App Store screenshots</p>
-          <h2 data-i18n="screens_title">Replace these blocks with real iPhone screenshots.</h2>
+          <h2 data-i18n="screens_title">Discover MindAltitude in action.</h2>
           <p data-i18n="screens_text">
-            This section is ready for your final App Store screenshots once they are exported.
+            Real iPhone screenshots showing the main MindAltitude training modules.
           </p>
         </div>
 
         <div class="screenshot-grid">
-  <figure class="screenshot-card">
-    <img src="screenshot-home.png" alt="MindAltitude home screen" />
-    <figcaption data-i18n="shot_1">Pilot-focused training</figcaption>
-  </figure>
+          <figure class="screenshot-card">
+            <img src="screenshot-home.png" alt="MindAltitude home screen" />
+            <figcaption data-i18n="shot_1">Pilot-focused training</figcaption>
+          </figure>
 
-  <figure class="screenshot-card">
-    <img src="screenshot-vfr.png" alt="MindAltitude VFR training screen" />
-    <figcaption data-i18n="shot_2">Improve VFR navigation</figcaption>
-  </figure>
+          <figure class="screenshot-card">
+            <img src="screenshot-vfr.png" alt="MindAltitude VFR training screen" />
+            <figcaption data-i18n="shot_2">Improve VFR navigation</figcaption>
+          </figure>
 
-  <figure class="screenshot-card">
-    <img src="screenshot-wind.png" alt="MindAltitude wind calculation screen" />
-    <figcaption data-i18n="shot_3">Master wind calculations</figcaption>
-  </figure>
+          <figure class="screenshot-card">
+            <img src="screenshot-wind.png" alt="MindAltitude wind calculation screen" />
+            <figcaption data-i18n="shot_3">Master wind calculations</figcaption>
+          </figure>
 
-  <figure class="screenshot-card">
-    <img src="screenshot-ifr.png" alt="MindAltitude IFR training screen" />
-    <figcaption data-i18n="shot_4">Build IFR reflexes</figcaption>
-  </figure>
+          <figure class="screenshot-card">
+            <img src="screenshot-ifr.png" alt="MindAltitude IFR training screen" />
+            <figcaption data-i18n="shot_4">Build IFR reflexes</figcaption>
+          </figure>
 
-  <figure class="screenshot-card">
-    <img src="screenshot-conversions.png" alt="MindAltitude aviation conversions screen" />
-    <figcaption data-i18n="shot_5">Essential conversions</figcaption>
-  </figure>
+          <figure class="screenshot-card">
+            <img src="screenshot-conversions.png" alt="MindAltitude aviation conversions screen" />
+            <figcaption data-i18n="shot_5">Essential conversions</figcaption>
+          </figure>
 
-  <figure class="screenshot-card">
-    <img src="screenshot-ifr-2.png" alt="MindAltitude detailed explanation screen" />
-    <figcaption data-i18n="shot_6">Learn with explanations</figcaption>
-  </figure>
-</div>
+          <figure class="screenshot-card">
+            <img src="screenshot-ifr-2.png" alt="MindAltitude detailed explanation screen" />
+            <figcaption data-i18n="shot_6">Learn with explanations</figcaption>
+          </figure>
+        </div>
       </div>
     </section>
 
@@ -177,6 +224,7 @@
             MindAltitude will launch on iPhone with a free training mode and a Premium one-time unlock.
           </p>
         </div>
+
         <a class="button primary" href="#" data-i18n="release_button">App Store link coming soon</a>
       </div>
     </section>
@@ -193,6 +241,7 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <p data-i18n="footer_copy">© 2026 MindAltitude. All rights reserved.</p>
+
       <div class="footer-links">
         <a href="privacy.html" data-i18n="footer_privacy">Privacy Policy</a>
         <a href="support.html" data-i18n="footer_support">Support</a>
