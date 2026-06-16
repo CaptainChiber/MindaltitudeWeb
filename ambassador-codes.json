@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "ambassador_codes": [
+    {
+      "code_hash": "A_REMPLACER",
+      "label": "Test 01",
+      "active": true
+    }
+  ]
+}
